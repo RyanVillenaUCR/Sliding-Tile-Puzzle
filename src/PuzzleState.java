@@ -4,6 +4,11 @@ import java.util.Set;
 
 public class PuzzleState {
 
+	public enum Command {
+		SLIDE_UP, SLIDE_DOWN,
+		SLIDE_LEFT, SLIDE_RIGHT
+	}
+	
 	public PuzzleState(int[][] grid) {
 		
 		if (grid == null)
@@ -12,6 +17,8 @@ public class PuzzleState {
 		this.grid = grid;
 		
 		assert(verify()) : "Bad input, dude";
+		
+		zero = lookForZero();
 	}
 
 	private boolean verify() {
@@ -58,6 +65,47 @@ public class PuzzleState {
 		return sb.toString();
 	}
 	
+	@Override
+	public boolean equals(Object other) {
+		
+		// Check class
+		if (!(other instanceof PuzzleState)) {
+			return false;
+		}
+		PuzzleState otherPS = (PuzzleState) other;
+		
+		// Check boundaries
+		if (this.grid.length != otherPS.grid.length ||
+				this.grid[0].length != otherPS.grid[0].length)
+			return false;
+		
+		// Check elements
+		for (int i = 0; i < grid.length; i++) {
+			for (int j = 0; j < grid.length; j++) {
+				
+				if (this.grid[i][j] != otherPS.grid[i][j])
+					return false;
+			}
+		}
+		
+		return true;
+	}
+	
+	@Override
+	public int hashCode() { // outsource hashing to string
+		
+		StringBuilder sb = new StringBuilder();
+		
+		for (int i = 0; i < grid.length; i++) {
+			for (int j = 0; j < grid.length; j++) {
+				
+				sb.append(grid[i][j]);
+			}
+		}
+		
+		return sb.toString().hashCode();
+	}
+	
 	public void set(int x, int y, int value) {
 		
 		grid[y][x] = value;
@@ -92,6 +140,116 @@ public class PuzzleState {
 		return true;
 	}
 	
+	private int[] lookForZero() {
+		
+		for (int i = 0; i < grid.length; i++) {
+			for (int j = 0; j < grid.length; j++) {
+				
+				if (this.get(i, j) == 0) // uses [ x, y] ] notation
+					return new int[] { i, j };
+			}
+		}
+		
+		assert(false) : "Zero was nowhere to be found...";
+		return null;
+	}
+	
+	public void slide(Command move) {
+		
+		switch (move) {
+		
+		case SLIDE_DOWN:
+			slideDown(); break;
+		case SLIDE_UP:
+			slideUp(); break;
+		case SLIDE_LEFT:
+			slideLeft(); break;
+		case SLIDE_RIGHT:
+			slideRight(); break;
+		}
+	}
+	
+	private void slideDown() { // Only slide() calls this
+		
+		assert(zero[1] != 0); // check bounds
+		
+		int slidyboi = get(zero[0], zero[1] - 1);
+		
+		set(zero[0], zero[1],     slidyboi);
+		set(zero[0], zero[1] - 1, 0);
+		
+		zero[1]--;
+	}
+	
+	private void slideUp() { // Only slide() calls this
+		
+		assert(zero[1] != grid.length - 1); // check bounds
+		
+		int slidyboi = get(zero[0], zero[1] + 1);
+		
+		set(zero[0], zero[1],     slidyboi);
+		set(zero[0], zero[1] + 1, 0);
+		
+		zero[1]++;
+	}
+	
+	private void slideLeft() { // Only slide() calls this
+		
+		assert(zero[0] != grid.length - 1);
+		
+		int slidyboi = get(zero[0] + 1, zero[1]);
+		
+		set(zero[0],     zero[1], slidyboi);
+		set(zero[0] + 1, zero[1], 0);
+		
+		zero[0]++;
+	}
+	
+	private void slideRight() { // Only slide() calls this
+		
+		assert(zero[0] != 0);
+		
+		int slidyboi = get(zero[0] - 1, zero[1]);
+		
+		set(zero[0],     zero[1], slidyboi);
+		set(zero[0] - 1, zero[1], 0);
+		
+		zero[0]--;
+	}
+	
+	Set<Command> possibleCommands() {
+		
+		int x = zero[0];
+		int y = zero[1];
+		Set<Command> possible = new HashSet<Command>();
+		
+		if (x != 0)
+			possible.add(Command.SLIDE_DOWN);
+		
+		if (x != grid.length - 1)
+			possible.add(Command.SLIDE_UP);
+		
+		if (y != 0)
+			possible.add(Command.SLIDE_RIGHT);
+		
+		if (y != grid.length - 1)
+			possible.add(Command.SLIDE_LEFT);
+		
+		return possible;		
+	}
+	
+	
+	public class InvalidCommandException extends Exception {
+
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+		
+		
+	}
+	
 	private int[][] grid;
+	private int[] zero;	// zero[0] is x, zero[1] is y
 	
 }
