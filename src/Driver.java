@@ -80,7 +80,7 @@ public class Driver {
 		// TODO Auto-generated method stub
 		System.out.println("Hello world!");
 		
-		testGrid();
+//		testGrid();
 		
 //		run();
 	}

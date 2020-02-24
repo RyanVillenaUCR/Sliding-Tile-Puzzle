@@ -1,10 +1,50 @@
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 public class PuzzleState {
 
 	public PuzzleState(int[][] grid) {
 		
+		if (grid == null)
+			throw new NullPointerException();
+		
 		this.grid = grid;
+		
+		assert(verify()) : "Bad input, dude";
+	}
+
+	private boolean verify() {
+		
+		// Check non-empty grid
+		if (grid.length == 0 || grid[0].length == 0)
+			return false;
+		
+		// Check that the grid is square
+		if (grid.length != grid[0].length)
+			return false;
+		
+		// Check values
+		Set<Integer> values = new HashSet<Integer>();
+		for (int i = 0; i < grid.length; i++) {
+			for (int j = 0; j < grid.length; j++) {
+				
+				// If the value is out of bounds, return false
+				if (grid[i][j] < 0 ||
+					grid[i][j] >= Math.pow(grid.length, 2)) {
+					
+					return false;
+				}
+				
+				// If duplicate value, return false
+				if (values.contains(grid[i][j]))
+					return false;
+				else
+					values.add(grid[i][j]);
+			}
+		}
+		
+		return true;
 	}
 	
 	@Override
