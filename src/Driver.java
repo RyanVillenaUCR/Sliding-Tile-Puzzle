@@ -47,11 +47,42 @@ public class Driver {
 		sc.close();
 	}
 	
+	private static void testGrid() {
+		
+		PuzzleState notGoal = new PuzzleState(
+
+			new int[][] {
+				{ 1, 2, 3 },
+				{ 4, 8, 0 },
+				{ 7, 6, 5 }
+			});
+		
+		System.out.println("notGoal:\n"
+				+ notGoal + "\n"
+				+ "notGoal at 0, 2: " + notGoal.get(0, 2) + "\n"
+				+ "Is this a goal state? " + notGoal.isGoal() + "\n");
+		
+		PuzzleState goal = new PuzzleState(
+
+			new int[][] {
+				{ 1, 2, 3 },
+				{ 4, 5, 6 },
+				{ 7, 8, 0 }
+			});
+		
+		System.out.println("goal:\n"
+				+ goal + "\n"
+				+ "goal at 0, 2: " + goal.get(0, 2) + "\n"
+				+ "Is this a goal state? " + goal.isGoal() + "\n");
+	}
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		System.out.println("Hello world!");
 		
-		run();
+		testGrid();
+		
+//		run();
 	}
 
 }

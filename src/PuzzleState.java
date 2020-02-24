@@ -28,6 +28,30 @@ public class PuzzleState {
 		return grid[y][x];
 	}
 	
+	public boolean isGoal() {
+		
+		int i = 1;
+		
+		for (int y = 0; y < grid.length; y++) {
+			for (int x = 0; x < grid.length; x++) {
+				
+				// If at the lower right corner of the grid,
+				// we made it
+				if (y == grid.length - 1 && x == grid.length - 1)
+					return true;
+				
+				// If at any point we skip a digit while counting,
+				// we're not the goal state
+				if (this.get(x,y) != i) return false;
+				i++;
+			}
+		}
+		
+		// Should be unreachable
+		assert(false) : "Reached unreachable code at PuzzleState.isGoal()\n";
+		return true;
+	}
+	
 	private int[][] grid;
 	
 }
