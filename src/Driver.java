@@ -42,6 +42,23 @@ public class Driver {
 		
 		
 		
+		IHeuristic heuristic;
+		switch (choice) {
+		
+		case 2:
+			heuristic = new MisplacedTileHeuristic();
+			break;
+		case 3:
+			heuristic = new ManhattanDistHeuristic();
+		case 1:
+		default:
+			heuristic = new UniCostHeuristic();	
+		}
+		
+		
+		
+		
+		
 		
 		
 		sc.close();
