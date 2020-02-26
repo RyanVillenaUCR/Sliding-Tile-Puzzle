@@ -57,24 +57,11 @@ public class Driver {
 		sc.close();
 	}
 	
-	private static void testStuff() {
-		
-//		Tester.testGrid();
-		
-//		Tester.testManhattanDist();
-		
-//		Tester.testGridIterator();
-		
-//		Tester.testMisplacedTile();
-		
-		Tester.testGetPuzzleFromUser();
-	}
-	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		System.out.println("Hello world!");
 		
-		testStuff();
+		Tester.doTests();
 		
 //		run();
 	}
