@@ -22,11 +22,14 @@ public class ManhattanDistHeuristic implements IHeuristic {
 	@Override
 	public Object clone() /*throws CloneNotSupportedException*/ {
 		
-		System.out.println("In ManhattanDistance.clone(), p[2][1] is " + p.get(2, 1));
-		
 		PuzzleState duplicatePS = new PuzzleState(p);
 		
 		return new ManhattanDistHeuristic(duplicatePS, accountForEmptyTile);
+	}
+	
+	@Override
+	public void setPuzzleState(PuzzleState p) {
+		this.p = p;		
 	}
 	
 	@Override
@@ -46,7 +49,7 @@ public class ManhattanDistHeuristic implements IHeuristic {
 			if (i != 0 || accountForEmptyTile)	// comment out to include empty tile placement
 				sum += getElementManhattanDist(i);
 			
-			System.out.println("m_dist(" + i + "): " + getElementManhattanDist(i));
+//			System.out.println("m_dist(" + i + "): " + getElementManhattanDist(i));
 		}
 		
 		return sum;
@@ -82,5 +85,6 @@ public class ManhattanDistHeuristic implements IHeuristic {
 	private PuzzleState p;
 	Map<Integer, int[]> locations;
 	boolean accountForEmptyTile;
+
 	
 }

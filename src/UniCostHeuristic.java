@@ -12,4 +12,7 @@ public class UniCostHeuristic implements IHeuristic {
 		
 		return new UniCostHeuristic();
 	}
+
+	@Override
+	public void setPuzzleState(PuzzleState p) {}
 }

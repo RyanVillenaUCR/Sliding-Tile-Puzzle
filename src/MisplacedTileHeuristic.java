@@ -14,6 +14,11 @@ public class MisplacedTileHeuristic implements IHeuristic {
 	}
 	
 	@Override
+	public void setPuzzleState(PuzzleState p) {
+		this.p = p;
+	}
+	
+	@Override
 	public int getHeuristic() {
 		
 		return getMisplacedTileHeuristic();
@@ -55,5 +60,6 @@ public class MisplacedTileHeuristic implements IHeuristic {
 	
 	private PuzzleState p;
 	boolean accountForEmptyTile;
+
 
 }

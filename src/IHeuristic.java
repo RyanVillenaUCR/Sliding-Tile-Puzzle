@@ -7,5 +7,7 @@ public interface IHeuristic extends Cloneable {
 //	@Override
 	Object clone() /*throws CloneNotSupportedException*/;
 	
+	void setPuzzleState(PuzzleState p);
+	
 	
 }
