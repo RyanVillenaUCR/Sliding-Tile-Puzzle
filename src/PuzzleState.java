@@ -309,16 +309,16 @@ public class PuzzleState implements Iterable<Integer> {
 		int y = zero[1];
 		Set<Command> possible = new HashSet<Command>();
 		
-		if (x != 0)
+		if (y != 0)
 			possible.add(Command.SLIDE_DOWN);
 		
-		if (x != grid.length - 1)
+		if (y != grid.length - 1)
 			possible.add(Command.SLIDE_UP);
 		
-		if (y != 0)
+		if (x != 0)
 			possible.add(Command.SLIDE_RIGHT);
 		
-		if (y != grid.length - 1)
+		if (x != grid.length - 1)
 			possible.add(Command.SLIDE_LEFT);
 		
 		return possible;		
