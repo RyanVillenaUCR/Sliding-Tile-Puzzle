@@ -2,13 +2,6 @@ import java.util.Scanner;
 
 public class Driver {
 	
-	private static PuzzleState getPuzzleFromUser() {
-		
-		Scanner sc = new Scanner(System.in);
-		
-		return null; // @TODO
-	}
-	
 	private static IHeuristic chooseHeuristic(int input) {
 		
 		switch (input) {
@@ -32,7 +25,11 @@ public class Driver {
 		
 		PuzzleState p;
 		
-		if (choice == 1) {
+		if (choice == 2) {
+			
+			p = new PuzzleState();
+			
+		} else {
 			
 			int[][] defaultP = new int[][] {
 				{ 1, 2, 3 },
@@ -41,12 +38,7 @@ public class Driver {
 			};
 			
 			p = new PuzzleState(defaultP);
-			
 		}
-//		} else {
-//			
-//			p = getPuzzleFromUser();
-//		}
 		
 		System.out.println("Enter your choice of algorithm:\n"
 				+ "1: Uniform Cost Search\n"
@@ -73,7 +65,9 @@ public class Driver {
 		
 //		Tester.testGridIterator();
 		
-		Tester.testMisplacedTile();
+//		Tester.testMisplacedTile();
+		
+		Tester.testGetPuzzleFromUser();
 	}
 	
 	public static void main(String[] args) {

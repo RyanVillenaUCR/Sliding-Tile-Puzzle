@@ -112,4 +112,11 @@ public class Tester {
 		System.out.println("Testing Misplaced tile for grid\n" + p2);
 		System.out.println("Misplaced tile: " + mpth2.getHeuristic());
 	}
+
+	public static void testGetPuzzleFromUser() {
+		
+		new PuzzleState();
+	}
+
+
 }
