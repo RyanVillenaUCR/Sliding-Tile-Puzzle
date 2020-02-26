@@ -1,8 +1,9 @@
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
-public class PuzzleState {
+public class PuzzleState implements Iterable<Integer> {
 
 	public enum Command {
 		SLIDE_UP, SLIDE_DOWN,
@@ -238,6 +239,16 @@ public class PuzzleState {
 		return possible;		
 	}
 	
+	@Override
+	public Iterator<Integer> iterator() {
+
+		return new PuzzleStateIterator(this);
+	}
+	
+	public int gridWidth() {
+		
+		return grid.length;
+	}
 	
 	public class InvalidCommandException extends Exception {
 
@@ -251,5 +262,6 @@ public class PuzzleState {
 	
 	private int[][] grid;
 	private int[] zero;	// zero[0] is x, zero[1] is y
+
 	
 }
