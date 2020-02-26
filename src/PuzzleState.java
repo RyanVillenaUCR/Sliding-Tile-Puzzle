@@ -66,6 +66,19 @@ public class PuzzleState implements Iterable<Integer> {
 		zero = lookForZero();
 	}
 
+	public PuzzleState(PuzzleState other) {
+		
+		for (int i = 0; i < other.grid.length; i++) {
+			for (int j = 0; j < other.grid.length; j++) {
+				
+				this.grid[i][j] = other.grid[i][j];
+			}
+		}
+		
+		this.zero[0] = other.zero[0];
+		this.zero[1] = other.zero[1];
+	}
+	
 	/**
 	 * False if invalid; duplicate values, nonsquare matrix, etc. True otherwise
 	 * @return True if a valid puzzle state, false otherwise
@@ -205,6 +218,12 @@ public class PuzzleState implements Iterable<Integer> {
 		return null;
 	}
 	
+	/**
+	 * Slides this PuzzleState based on the input.
+	 * Please only use this method to mutate objects of this class,
+	 * as the individual slide functions are intentionally private.
+	 * @param move Designates if a piece should be slid up, down, left, or right
+	 */
 	public void slide(Command move) {
 		
 		switch (move) {
@@ -268,6 +287,13 @@ public class PuzzleState implements Iterable<Integer> {
 		zero[0]--;
 	}
 	
+	/**
+	 * Computes which commands are possible on the current PuzzleState.
+	 * For example, if the empty tile were in the upper right corner,
+	 * only Command.SLIDE_RIGHT and Comand.SLIDE_UP would be returned,
+	 * as the other slides are impossible.
+	 * @return A set of possible commands for the current puzzle state
+	 */
 	Set<Command> possibleCommands() {
 		
 		int x = zero[0];
