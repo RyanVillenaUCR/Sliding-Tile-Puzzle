@@ -35,7 +35,7 @@ public class Tester {
 		PuzzleState p1 = new PuzzleState(new int[][] {
 			{ 1, 2, 3 },
 			{ 4, 5, 6 },
-			{ 7, 0, 8 }
+			{ 7, 8, 0 }
 		});
 		
 		for (Integer i : p1)
