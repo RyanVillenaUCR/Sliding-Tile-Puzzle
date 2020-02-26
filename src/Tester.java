@@ -35,11 +35,13 @@ public class Tester {
 		PuzzleState p1 = new PuzzleState(new int[][] {
 			{ 1, 2, 3 },
 			{ 4, 5, 6 },
-			{ 7, 8, 0 }
+			{ 7, 0, 8 }
 		});
 		
 		for (Integer i : p1)
 			System.out.println(i + " ");
+		
+		System.out.println("hashcode: " + p1.hashCode());
 	}
 	
 	public static void testManhattanDist() {
