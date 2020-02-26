@@ -136,7 +136,7 @@ public class Tester {
 	
 	public static void testPriorityQueue() {
 		
-		PriorityQueue<Node> pq = new PriorityQueue<Node>();
+		Queue<Node> pq = new PriorityQueue<Node>();
 		
 		PuzzleState solved = new PuzzleState(
 				new int[][] {
@@ -163,6 +163,62 @@ public class Tester {
 		System.out.println("Popping...\n" + pq.remove());
 		System.out.println("Popping...\n" + pq.remove());
 	}
+
+	public static void testPuzzleStateCopyCtor() {
+		
+		PuzzleState goalPS = new PuzzleState(
+
+				new int[][] {
+					{ 1, 2, 3 },
+					{ 4, 5, 6 },
+					{ 7, 8, 0 }
+				});
+		
+		PuzzleState other = new PuzzleState(goalPS);
+		other.set(0, 0, 69);
+		
+		System.out.println("goalPS:\n" + goalPS);
+		System.out.println("other: \n" + other);
+		
+	}
+	
+	public static void testNodeCopyCtor() {
+		
+		PuzzleState goalPS = new PuzzleState(
+
+				new int[][] {
+					{ 1, 2, 3 },
+					{ 4, 5, 6 },
+					{ 7, 8, 0 }
+				});
+		
+		Node n = new Node(goalPS, null, new UniCostHeuristic());
+		
+		Node copy = new Node(new PuzzleState(goalPS), null, new UniCostHeuristic());
+		
+//		copy.getPuzzleState().set(0, 0, 69);
+		
+		System.out.println("n:    " + n);
+		System.out.println("copy: " + copy);
+		System.out.println("n.equals(copy)? " + n.equals(copy));
+		System.out.println("n == copy? " + Boolean.toString(n == copy));
+	}
+	
+	public static void testTrivialProblem() {
+		
+		PuzzleState goalPS = new PuzzleState(
+
+				new int[][] {
+					{ 1, 2, 3 },
+					{ 4, 5, 6 },
+					{ 7, 8, 0 }
+				});
+		
+		IHeuristic h = new ManhattanDistHeuristic(goalPS, false);
+		Problem p = new Problem(goalPS, h);
+		System.out.println(p.solve());
+		
+	}
 	
 	public static void doTests() {
 		
@@ -178,7 +234,13 @@ public class Tester {
 		
 //		testNode();
 		
-		testPriorityQueue();
+//		testPriorityQueue();
+		
+//		testPuzzleStateCopyCtor();
+		
+		testNodeCopyCtor();
+		
+//		testTrivialProblem();
 	}
 
 }
