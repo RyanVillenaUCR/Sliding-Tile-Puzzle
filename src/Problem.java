@@ -16,16 +16,27 @@ public class Problem {
 	
 	public boolean solve() {
 		
+
+		
+		// Init the root node as the given PuzzleState
 		Node root = new Node(initialState, null, (IHeuristic) heuristic.clone());
 		
+		// Account for the trivial case
 		if (root.isGoal()) {
 			
 			printStackTrace(root);
+			printEndStats(0, 0);
 			return true;
 		}
 		
+
+		
+		// Prepare local variables for the loop
 		Queue<Node> frontier = new PriorityQueue<Node>();
 		frontier.addAll(root.generateChildren());
+		
+		int maxFrontierSize = frontier.size();
+		int nodesExpanded = 0;
 		
 		Set<PuzzleState> explored = new HashSet<PuzzleState>();
 		explored.add(initialState); // should this be empty?
@@ -33,17 +44,27 @@ public class Problem {
 		if (enableExpansionTrace)
 			System.out.println("Starting at initial state\n" + root);
 		
+		
+		
+		// Only exit this loop upon finding a solution,
+		// or exhausting all possibilities
 		while (!frontier.isEmpty()) {
 			
+			// This draws on g(n) and h(n)
+			// See Node.compareTo() for proof
 			Node leaf = frontier.remove();
+			
+			// If we've found the solution, we're done
 			if (leaf.isGoal()) {
 				
 				printStackTrace(leaf);
+				printEndStats(maxFrontierSize, nodesExpanded);
 				return true;
 			}
 			
 			
 			
+			// Else, we need to expand
 			explored.add(leaf.getPuzzleState());
 			
 			if (enableExpansionTrace)
@@ -57,14 +78,31 @@ public class Problem {
 			for (Node thisChild : leafChildren) {
 				
 				if (!explored.contains(thisChild.getPuzzleState())
-						&& !frontier.contains(thisChild)) // do we need to check the frontier?
+						&& !frontier.contains(thisChild)) // do we really need to check the frontier?
 					
 					frontier.add(thisChild);
 					
 			}
 			
+			// Account for end stats before executing loop again
+			if (frontier.size() > maxFrontierSize)
+				maxFrontierSize = frontier.size();
+			
+			nodesExpanded++;
+			
 		}
+		
+		// If you're here, there was no solution
+		printEndStats(maxFrontierSize, nodesExpanded);
 		return false;
+	}
+	
+	private void printEndStats(int maxFrontierSize, int nodesExpanded) {
+		
+		System.out.println("This algorithm expanded a total of "
+				+ nodesExpanded + " times.");
+		System.out.println("The maximum number of nodes in the queue at any one time was "
+				+ maxFrontierSize + ".");
 	}
 	
 	private void printStackTrace(Node goalNode) {
