@@ -7,7 +7,7 @@ public class Problem {
 		this.heuristic = heuristic;
 	}
 	
-	boolean solve() {
+	public boolean solve() {
 		
 		return false; // TODO
 	}
