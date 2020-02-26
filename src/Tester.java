@@ -222,7 +222,7 @@ public class Tester {
 	
 	public static void testVeryEasy() {
 		
-		PuzzleState goalPS = new PuzzleState(
+		PuzzleState oneOff = new PuzzleState(
 
 				new int[][] {
 					{ 1, 2, 3 },
@@ -230,8 +230,23 @@ public class Tester {
 					{ 7, 0, 8 }
 				});
 		
-		IHeuristic h = new ManhattanDistHeuristic(goalPS, false);
-		Problem p = new Problem(goalPS, h);
+		IHeuristic h = new ManhattanDistHeuristic(oneOff, false);
+		Problem p = new Problem(oneOff, h);
+		System.out.println(p.solve());
+	}
+	
+	public static void testEasy() {
+		
+		PuzzleState twoOff = new PuzzleState(
+
+				new int[][] {
+					{ 1, 2, 0 },
+					{ 4, 5, 3 },
+					{ 7, 8, 6 }
+				});
+		
+		IHeuristic h = new ManhattanDistHeuristic(twoOff, false);
+		Problem p = new Problem(twoOff, h);
 		System.out.println(p.solve());
 	}
 	
@@ -259,7 +274,9 @@ public class Tester {
 		
 //		testTrivial();
 		
-		testVeryEasy();
+//		testVeryEasy();
+		
+		testEasy();
 	}
 
 }
