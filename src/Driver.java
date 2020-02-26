@@ -8,6 +8,20 @@ public class Driver {
 		
 		return null; // @TODO
 	}
+	
+	private static IHeuristic chooseHeuristic(int input) {
+		
+		switch (input) {
+		
+		case 2:
+			return new MisplacedTileHeuristic();
+		case 3:
+			return new ManhattanDistHeuristic(null, false);
+		case 1:
+		default:
+			return new UniCostHeuristic();	
+		}
+	}
 
 	private static void run() {
 		
@@ -39,21 +53,8 @@ public class Driver {
 				+ "2: A* with the Misplaced Tile heuristic\n"
 				+ "3: A* with the Manhattan distance heuristic\n");
 		choice = sc.nextInt();
-		
-		
-		
-		IHeuristic heuristic;
-		switch (choice) {
-		
-		case 2:
-			heuristic = new MisplacedTileHeuristic();
-			break;
-		case 3:
-			heuristic = new ManhattanDistHeuristic();
-		case 1:
-		default:
-			heuristic = new UniCostHeuristic();	
-		}
+		IHeuristic heuristic = chooseHeuristic(choice);
+
 		
 		
 		
@@ -64,40 +65,20 @@ public class Driver {
 		sc.close();
 	}
 	
-	private static void testGrid() {
+	private static void testStuff() {
 		
-		PuzzleState notGoal = new PuzzleState(
-
-			new int[][] {
-				{ 1, 2, 3 },
-				{ 4, 8, 0 },
-				{ 7, 6, 5 }
-			});
+//		Tester.testGrid();
 		
-		System.out.println("notGoal:\n"
-				+ notGoal + "\n"
-				+ "notGoal at 0, 2: " + notGoal.get(0, 2) + "\n"
-				+ "Is this a goal state? " + notGoal.isGoal() + "\n");
+		Tester.testManhattanDist();
 		
-		PuzzleState goal = new PuzzleState(
-
-			new int[][] {
-				{ 1, 2, 3 },
-				{ 4, 5, 6 },
-				{ 7, 8, 0 }
-			});
-		
-		System.out.println("goal:\n"
-				+ goal + "\n"
-				+ "goal at 0, 2: " + goal.get(0, 2) + "\n"
-				+ "Is this a goal state? " + goal.isGoal() + "\n");
+//		Tester.testGridIterator();
 	}
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		System.out.println("Hello world!");
 		
-//		testGrid();
+		testStuff();
 		
 //		run();
 	}
