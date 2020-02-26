@@ -1,7 +1,6 @@
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.Scanner;
 import java.util.Set;
 
 public class PuzzleState implements Iterable<Integer> {
@@ -16,10 +15,8 @@ public class PuzzleState implements Iterable<Integer> {
 	 */
 	public PuzzleState() {
 		
-		Scanner sc = new Scanner(System.in);
-		
 		System.out.println("How wide should your square matrix be?");
-		int width = Math.abs(sc.nextInt());
+		int width = Math.abs(Driver.sc.nextInt());
 		
 		System.out.println("Please fill in your grid one at a time,\n"
 				+ "using 0 as the blank space.");
@@ -32,7 +29,7 @@ public class PuzzleState implements Iterable<Integer> {
 				for (int x = 0; x < width; x++) {
 					
 					System.out.println("Enter a number at { " + x + ", " + y + " }");
-					this.set(x, y, sc.nextInt());
+					this.set(x, y, Driver.sc.nextInt());
 					
 					System.out.println(this);
 				}
@@ -44,10 +41,6 @@ public class PuzzleState implements Iterable<Integer> {
 			System.out.println("Try again.");
 			this.grid = new int[width][width];
 		}
-
-		
-		
-		sc.close();
 	}
 	
 	/**
