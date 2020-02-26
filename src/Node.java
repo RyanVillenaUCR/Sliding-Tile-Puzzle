@@ -118,7 +118,7 @@ public class Node implements Comparable<Node> {
 	
 	private PuzzleState data;
 	private Node parent;
-	public IHeuristic heuristic; // TODO revert
+	private IHeuristic heuristic;
 	private int depth;
 
 }
