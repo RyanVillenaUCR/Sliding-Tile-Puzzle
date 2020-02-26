@@ -2,7 +2,6 @@ import java.util.HashSet;
 import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Set;
-import java.util.Stack;
 
 public class Problem {
 
@@ -10,14 +9,18 @@ public class Problem {
 		
 		this.initialState = initialState;
 		this.heuristic = heuristic;
+		this.enableStackTrace = true;
 	}
 	
 	public boolean solve() {
 		
 		Node root = new Node(initialState, null, (IHeuristic) heuristic.clone());
 		
-		if (root.isGoal())
+		if (root.isGoal()) {
+			
 			printStackTrace(root);
+			return true;
+		}
 		
 		Queue<Node> frontier = new PriorityQueue<Node>();
 		frontier.addAll(root.generateChildren());
@@ -25,11 +28,17 @@ public class Problem {
 		Set<PuzzleState> explored = new HashSet<PuzzleState>();
 		explored.add(initialState); // should this be empty?
 		
+		System.err.println("Starting at initial state\n" + root);
+		
 		while (!frontier.isEmpty()) {
 			
 			Node leaf = frontier.remove();
 			
+			System.err.println("Expanding this leaf:\n" + leaf);
+			
 			if (leaf.isGoal()) {
+				
+				System.out.println("goal leaf's parent: " + leaf.parent);
 				
 				printStackTrace(leaf);
 				return true;
@@ -57,9 +66,11 @@ public class Problem {
 		
 		assert(goalNode.isGoal());
 		
+		if (!enableStackTrace) return;
+		
 		System.out.println("STACK TRACE BEGIN\n==============\n");
 		
-		Stack<Node> stackTrace = goalNode.stackTrace();
+		Queue<Node> stackTrace = goalNode.stackTrace();
 		
 		for (Node thisNode : stackTrace) {
 			
@@ -71,5 +82,6 @@ public class Problem {
 	
 	private PuzzleState initialState;
 	private IHeuristic heuristic;
+	private boolean enableStackTrace;
 	
 }
