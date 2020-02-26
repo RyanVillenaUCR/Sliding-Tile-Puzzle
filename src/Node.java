@@ -56,15 +56,8 @@ public class Node implements Comparable<Node> {
 			PuzzleState newP = new PuzzleState(this.data);
 			newP.slide(thisCmd);
 			
-			try {
-				
-				children.add(new Node(newP, this, (IHeuristic) this.heuristic.clone()));
-				
-			} catch (CloneNotSupportedException e) {
-				// TODO Auto-generated catch block
-				// this... should never get here lol
-				e.printStackTrace();
-			}
+			children.add(new Node(newP, this, (IHeuristic) this.heuristic.clone()));
+
 		}
 		
 		return children;	
@@ -86,6 +79,16 @@ public class Node implements Comparable<Node> {
 		return stackTrace(new Stack<Node>());
 	}
 	
+	public boolean isGoal() {
+		
+		return data.isGoal();
+	}
+	
+	public PuzzleState getPuzzleState() {
+		
+		return data;
+	}
+	
 	private Stack<Node> stackTrace(Stack<Node> existingStack) {
 		
 		if (parent == null) {
@@ -96,6 +99,8 @@ public class Node implements Comparable<Node> {
 		existingStack.push(this);
 		return parent.stackTrace(existingStack);
 	}
+	
+	
 	
 	private PuzzleState data;
 	private Node parent;
