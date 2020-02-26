@@ -25,7 +25,7 @@ public class ManhattanDistHeuristic implements IHeuristic {
 		return getManhattanSum();
 	}
 	
-	public int getManhattanSum() {
+	private int getManhattanSum() {
 		// Pseudocode adapted from this online explanation:
 		// https://www.cs.princeton.edu/courses/archive/spring18/cos226/assignments/8puzzle/index.html
 		
@@ -42,7 +42,7 @@ public class ManhattanDistHeuristic implements IHeuristic {
 		return sum;
 	}
 	
-	public int getElementManhattanDist(int element) {
+	private int getElementManhattanDist(int element) {
 		
 		assert(element > 0 && element < p.gridWidth())
 			: "Invalid element " + Integer.toString(element);

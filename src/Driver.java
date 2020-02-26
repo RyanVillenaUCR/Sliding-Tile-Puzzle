@@ -69,9 +69,9 @@ public class Driver {
 		
 //		Tester.testGrid();
 		
-		Tester.testManhattanDist();
+//		Tester.testManhattanDist();
 		
-//		Tester.testGridIterator();
+		Tester.testGridIterator();
 	}
 	
 	public static void main(String[] args) {
