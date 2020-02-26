@@ -14,7 +14,7 @@ public class Driver {
 		switch (input) {
 		
 		case 2:
-			return new MisplacedTileHeuristic();
+			return new MisplacedTileHeuristic(null, false);
 		case 3:
 			return new ManhattanDistHeuristic(null, false);
 		case 1:
@@ -71,7 +71,9 @@ public class Driver {
 		
 //		Tester.testManhattanDist();
 		
-		Tester.testGridIterator();
+//		Tester.testGridIterator();
+		
+		Tester.testMisplacedTile();
 	}
 	
 	public static void main(String[] args) {
