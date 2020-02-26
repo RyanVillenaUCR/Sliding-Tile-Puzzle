@@ -41,6 +41,8 @@ public class PuzzleState implements Iterable<Integer> {
 			System.out.println("Try again.");
 			this.grid = new int[width][width];
 		}
+		
+		this.zero = lookForZero();
 	}
 	
 	/**
