@@ -8,6 +8,18 @@ public class Problem {
 
 	public Problem(PuzzleState initialState, IHeuristic heuristic) {
 		
+		init(initialState, heuristic, true, true);
+	}
+	
+	public Problem(PuzzleState initialState, IHeuristic heuristic,
+			boolean enableStackTrace, boolean enableExpansionTree) {
+		
+		init(initialState, heuristic, enableStackTrace, enableExpansionTree);
+	}
+	
+	private void init(PuzzleState initialState, IHeuristic heuristic,
+			boolean enableStackTrace, boolean enableExpansionTree) {
+		
 		this.initialState = initialState;
 		this.heuristic = heuristic;
 		this.enableStackTrace = true;
