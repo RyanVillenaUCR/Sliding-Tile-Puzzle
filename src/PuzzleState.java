@@ -41,12 +41,18 @@ public class PuzzleState implements Iterable<Integer> {
 				if (grid[i][j] < 0 ||
 					grid[i][j] >= Math.pow(grid.length, 2)) {
 					
+					System.err.println("ERROR: Out-of-bounds value " + grid[i][j] +
+							" at coords { " + i + ", " + j + " }");
 					return false;
 				}
 				
 				// If duplicate value, return false
-				if (values.contains(grid[i][j]))
+				if (values.contains(grid[i][j])) {
+					System.err.println("ERROR: Value " + grid[i][j] +
+							" appeared twice at coords { " + i + ", " + j + " }");
 					return false;
+				}
+					
 				else
 					values.add(grid[i][j]);
 			}
