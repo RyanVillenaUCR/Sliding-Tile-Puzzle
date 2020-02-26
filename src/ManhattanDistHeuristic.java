@@ -5,6 +5,8 @@ public class ManhattanDistHeuristic implements IHeuristic {
 
 	public ManhattanDistHeuristic(PuzzleState p, boolean accountForEmptyTile) {
 		
+		assert(p != null);
+		
 		this.p = p;
 		this.accountForEmptyTile = accountForEmptyTile;
 		
