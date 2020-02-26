@@ -93,6 +93,7 @@ public class Node implements Comparable<Node> {
 		
 		if (parent == null) {
 			
+			existingStack.push(this);
 			return existingStack;
 		}
 		

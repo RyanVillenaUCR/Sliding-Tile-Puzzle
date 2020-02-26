@@ -2,6 +2,7 @@ import java.util.HashSet;
 import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Set;
+import java.util.Stack;
 
 public class Problem {
 
@@ -38,8 +39,6 @@ public class Problem {
 			
 			if (leaf.isGoal()) {
 				
-				System.out.println("goal leaf's parent: " + leaf.parent);
-				
 				printStackTrace(leaf);
 				return true;
 			}
@@ -70,11 +69,11 @@ public class Problem {
 		
 		System.out.println("STACK TRACE BEGIN\n==============\n");
 		
-		Queue<Node> stackTrace = goalNode.stackTrace();
+		Stack<Node> stackTrace = goalNode.stackTrace();
 		
-		for (Node thisNode : stackTrace) {
+		while (!stackTrace.empty()) {
 			
-			System.out.println(thisNode);
+			System.out.println(stackTrace.pop());
 		}
 		
 		System.out.println("STACK TRACE END\n================\n");
