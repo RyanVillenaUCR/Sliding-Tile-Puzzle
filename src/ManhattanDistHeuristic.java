@@ -20,6 +20,12 @@ public class ManhattanDistHeuristic implements IHeuristic {
 	}
 	
 	@Override
+	public Object clone() throws CloneNotSupportedException {
+		
+		return new ManhattanDistHeuristic(new PuzzleState(p), accountForEmptyTile);
+	}
+	
+	@Override
 	public int getHeuristic() {
 
 		return getManhattanSum();

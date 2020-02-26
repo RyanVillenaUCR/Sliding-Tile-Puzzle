@@ -7,4 +7,9 @@ public class UniCostHeuristic implements IHeuristic {
 		return 0;
 	}
 
+	@Override
+	public Object clone() throws CloneNotSupportedException {
+		
+		return new UniCostHeuristic();
+	}
 }
