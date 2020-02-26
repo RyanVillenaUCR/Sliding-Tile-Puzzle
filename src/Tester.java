@@ -275,6 +275,21 @@ public class Tester {
 		System.out.println(p.solve() ? "" : "No solution");
 	}
 	
+	public static void testOhBoy() {
+		
+		PuzzleState theBigOne = new PuzzleState(
+
+				new int[][] {
+					{ 8, 7, 1 },
+					{ 6, 0, 2 },
+					{ 5, 4, 3 }
+				});
+		
+		IHeuristic h = new ManhattanDistHeuristic(theBigOne, false);
+		Problem p = new Problem(theBigOne, h);
+		System.out.println(p.solve() ? "" : "No solution");
+	}
+	
 	public static void doTests() {
 		
 //		testGrid();
@@ -303,7 +318,9 @@ public class Tester {
 		
 //		testEasy();
 		
-		testDoable();
+//		testDoable();
+		
+		testOhBoy();
 	}
 
 }
