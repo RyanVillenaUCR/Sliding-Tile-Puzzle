@@ -50,7 +50,7 @@ public class ManhattanDistHeuristic implements IHeuristic {
 	
 	private int getElementManhattanDist(int element) {
 		
-		assert(element > 0 && element < p.gridWidth())
+		assert(element >= 0 && element < Math.pow(p.gridWidth(), 2))
 			: "Invalid element " + Integer.toString(element);
 		assert(locations.containsKey(element))
 			: "Element " + Integer.toString(element) + " not found in locations";
