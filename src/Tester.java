@@ -53,12 +53,12 @@ public class Tester {
 		// turn ManhattanDistHeuristic.getElementManhattanDist() public
 		
 		// Expected Manhattan distance: 10 w/o empty tile, 12 with
-		PuzzleState p1 = new PuzzleState(new int[][] {
-			{ 8, 1, 3 },
-			{ 4, 0, 2 },
-			{ 7, 6, 5 }
-		});
-		IHeuristic mdh1 = new ManhattanDistHeuristic(p1, false);
+//		PuzzleState p1 = new PuzzleState(new int[][] {
+//			{ 8, 1, 3 },
+//			{ 4, 0, 2 },
+//			{ 7, 6, 5 }
+//		});
+//		IHeuristic mdh1 = new ManhattanDistHeuristic(p1, false);
 	
 //		int testElement = 0;
 		
@@ -67,20 +67,20 @@ public class Tester {
 //				+ "MhtnDist(" + Integer.toString(testElement) + "): "
 //				+ mdh1.getElementManhattanDist(testElement));
 		
-		System.out.println("Testing Manhattan distance for grid\n" + p1);
-		System.out.println("Manhattan distance: " + mdh1.getHeuristic());
+//		System.out.println("Testing Manhattan distance for grid\n" + p1);
+//		System.out.println("Manhattan distance: " + mdh1.getHeuristic());
 		
 		
 		
-		PuzzleState p2 = new PuzzleState(new int[][] {
-			{ 1, 2, 3 },
-			{ 4, 5, 6 },
-			{ 7, 8, 0 }
-		});
-		IHeuristic mdh2 = new ManhattanDistHeuristic(p2, false);
-		
-		System.out.println("Testing Manhattan distance for grid\n" + p2);
-		System.out.println("Manhattan distance: " + mdh2.getHeuristic());
+//		PuzzleState p2 = new PuzzleState(new int[][] {
+//			{ 1, 2, 3 },
+//			{ 4, 5, 6 },
+//			{ 7, 8, 0 }
+//		});
+//		IHeuristic mdh2 = new ManhattanDistHeuristic(p2, false);
+//		
+//		System.out.println("Testing Manhattan distance for grid\n" + p2);
+//		System.out.println("Manhattan distance: " + mdh2.getHeuristic());
 		
 //		int testElement = 0;
 ////		
@@ -88,6 +88,16 @@ public class Tester {
 //				+ "for element " + Integer.toString(testElement) + ": "
 //				+ "MhtnDist(" + Integer.toString(testElement) + "): "
 //				+ mdh2.getElementManhattanDist(testElement));
+		
+		PuzzleState p3 = new PuzzleState(new int[][] {
+			{ 4, 1, 2 },
+			{ 7, 0, 3 },
+			{ 8, 5, 6 }
+		});
+		IHeuristic mdh3 = new ManhattanDistHeuristic(p3, false);
+		
+		System.out.println("Testing Manhattan distance for grid\n" + p3);
+		System.out.println("Manhattan distance: " + mdh3.getHeuristic());
 	}
 
 	public static void testMisplacedTile() {
@@ -216,7 +226,7 @@ public class Tester {
 		
 		IHeuristic h = new ManhattanDistHeuristic(goalPS, false);
 		Problem p = new Problem(goalPS, h);
-		System.out.println(p.solve());
+		System.out.println(p.solve() ? "" : "No solution");
 		
 	}
 	
@@ -232,7 +242,7 @@ public class Tester {
 		
 		IHeuristic h = new ManhattanDistHeuristic(oneOff, false);
 		Problem p = new Problem(oneOff, h);
-		System.out.println(p.solve());
+		System.out.println(p.solve() ? "" : "No solution");
 	}
 	
 	public static void testEasy() {
@@ -247,7 +257,22 @@ public class Tester {
 		
 		IHeuristic h = new ManhattanDistHeuristic(twoOff, false);
 		Problem p = new Problem(twoOff, h);
-		System.out.println(p.solve());
+		System.out.println(p.solve() ? "" : "No solution");
+	}
+	
+	public static void testDoable() {
+		
+		PuzzleState nOff = new PuzzleState(
+
+				new int[][] {
+					{ 0, 1, 2 },
+					{ 4, 5, 3 },
+					{ 7, 8, 6 }
+				});
+		
+		IHeuristic h = new ManhattanDistHeuristic(nOff, false);
+		Problem p = new Problem(nOff, h);
+		System.out.println(p.solve() ? "" : "No solution");
 	}
 	
 	public static void doTests() {
@@ -276,7 +301,9 @@ public class Tester {
 		
 //		testVeryEasy();
 		
-		testEasy();
+//		testEasy();
+		
+		testDoable();
 	}
 
 }
