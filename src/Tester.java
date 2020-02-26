@@ -204,7 +204,7 @@ public class Tester {
 		System.out.println("n == copy? " + Boolean.toString(n == copy));
 	}
 	
-	public static void testTrivialProblem() {
+	public static void testTrivial() {
 		
 		PuzzleState goalPS = new PuzzleState(
 
@@ -218,6 +218,21 @@ public class Tester {
 		Problem p = new Problem(goalPS, h);
 		System.out.println(p.solve());
 		
+	}
+	
+	public static void testVeryEasy() {
+		
+		PuzzleState goalPS = new PuzzleState(
+
+				new int[][] {
+					{ 1, 2, 3 },
+					{ 4, 5, 6 },
+					{ 7, 0, 8 }
+				});
+		
+		IHeuristic h = new ManhattanDistHeuristic(goalPS, false);
+		Problem p = new Problem(goalPS, h);
+		System.out.println(p.solve());
 	}
 	
 	public static void doTests() {
@@ -238,9 +253,13 @@ public class Tester {
 		
 //		testPuzzleStateCopyCtor();
 		
-		testNodeCopyCtor();
+//		testNodeCopyCtor();
 		
-//		testTrivialProblem();
+		/////////////
+		
+//		testTrivial();
+		
+		testVeryEasy();
 	}
 
 }
