@@ -97,12 +97,8 @@ public class PuzzleState implements Iterable<Integer> {
 		
 		StringBuilder sb = new StringBuilder();
 		
-		for (int i = 0; i < grid.length; i++) {
-			for (int j = 0; j < grid.length; j++) {
-				
-				sb.append(grid[i][j]);
-			}
-		}
+		for (Integer i : this)
+			sb.append(i);
 		
 		return sb.toString().hashCode();
 	}
