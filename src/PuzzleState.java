@@ -59,7 +59,11 @@ public class PuzzleState implements Iterable<Integer> {
 		if (grid == null)
 			throw new NullPointerException();
 		
-		this.grid = grid;
+		this.grid = new int[grid.length][grid.length];
+		
+		for (int i = 0; i < grid.length; i++)
+			for (int j = 0; j < grid.length; j++)
+				this.grid[i][j] = grid[i][j];
 		
 		assert(verify()) : "Bad input, dude";
 		
@@ -68,9 +72,14 @@ public class PuzzleState implements Iterable<Integer> {
 
 	public PuzzleState(PuzzleState other) {
 		
+		this.grid = new int[other.gridWidth()][other.gridWidth()];
+		this.zero = new int[2];
+		
 		for (int i = 0; i < other.grid.length; i++) {
 			for (int j = 0; j < other.grid.length; j++) {
 				
+//				System.err.println("i: " + i + ", j: " + j);
+//				System.err.println("In PuzzleState.PuzzleState(other), this.grid: " + this.grid);
 				this.grid[i][j] = other.grid[i][j];
 			}
 		}
