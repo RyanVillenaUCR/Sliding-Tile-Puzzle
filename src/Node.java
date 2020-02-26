@@ -84,6 +84,16 @@ public class Node implements Comparable<Node> {
 		return data.isGoal();
 	}
 	
+	public int getDepth() {
+		
+		return depth;
+	}
+	
+	public int getHeuristicValue() {
+		
+		return heuristic.getHeuristic();
+	}
+	
 	public PuzzleState getPuzzleState() {
 		
 		return data;
