@@ -11,7 +11,7 @@ public class Problem {
 		this.initialState = initialState;
 		this.heuristic = heuristic;
 		this.enableStackTrace = true;
-		this.enableExpansionTrace = false;
+		this.enableExpansionTrace = true;
 	}
 	
 	public boolean solve() {
@@ -36,20 +36,21 @@ public class Problem {
 		while (!frontier.isEmpty()) {
 			
 			Node leaf = frontier.remove();
-			
-			if (enableExpansionTrace)
-				System.out.println("Expanding this leaf:,\n" +
-						"with g(n) = " + leaf.getDepth() + 
-						" and h(n) = " + leaf.getHeuristicValue() + "\n" + leaf);
-			
 			if (leaf.isGoal()) {
 				
 				printStackTrace(leaf);
 				return true;
 			}
 			
+			
+			
 			explored.add(leaf.getPuzzleState());
 			
+			if (enableExpansionTrace)
+				System.out.println("Expanding this leaf,\n" +
+						"with g(n) = " + leaf.getDepth() + 
+						" and h(n) = " + leaf.getHeuristicValue() + "\n" + leaf);
+	
 			// Add children to frontier,
 			// if they're not in explored or frontier already
 			Set<Node> leafChildren = leaf.generateChildren();
