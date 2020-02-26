@@ -1,6 +1,7 @@
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Scanner;
 import java.util.Set;
 
 public class PuzzleState implements Iterable<Integer> {
@@ -10,6 +11,49 @@ public class PuzzleState implements Iterable<Integer> {
 		SLIDE_LEFT, SLIDE_RIGHT
 	}
 	
+	/**
+	 * A constructor which takes input from the console.
+	 */
+	public PuzzleState() {
+		
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("How wide should your square matrix be?");
+		int width = Math.abs(sc.nextInt());
+		
+		System.out.println("Please fill in your grid one at a time,\n"
+				+ "using 0 as the blank space.");
+		
+		this.grid = new int[width][width];
+		
+		while (true) {
+			
+			for (int y = 0; y < width; y++) {
+				for (int x = 0; x < width; x++) {
+					
+					System.out.println("Enter a number at { " + x + ", " + y + " }");
+					this.set(x, y, sc.nextInt());
+					
+					System.out.println(this);
+				}
+			}
+			
+			if (verify())
+				break;
+			
+			System.out.println("Try again.");
+			this.grid = new int[width][width];
+		}
+
+		
+		
+		sc.close();
+	}
+	
+	/**
+	 * A constructor which takes input from within the program
+	 * @param grid 2D grid; must be valid (see verify())
+	 */
 	public PuzzleState(int[][] grid) {
 		
 		if (grid == null)
@@ -22,6 +66,10 @@ public class PuzzleState implements Iterable<Integer> {
 		zero = lookForZero();
 	}
 
+	/**
+	 * False if invalid; duplicate values, nonsquare matrix, etc. True otherwise
+	 * @return True if a valid puzzle state, false otherwise
+	 */
 	private boolean verify() {
 		
 		// Check non-empty grid
