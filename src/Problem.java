@@ -11,6 +11,7 @@ public class Problem {
 		this.initialState = initialState;
 		this.heuristic = heuristic;
 		this.enableStackTrace = true;
+		this.enableExpansionTrace = false;
 	}
 	
 	public boolean solve() {
@@ -29,13 +30,17 @@ public class Problem {
 		Set<PuzzleState> explored = new HashSet<PuzzleState>();
 		explored.add(initialState); // should this be empty?
 		
-		System.err.println("Starting at initial state\n" + root);
+		if (enableExpansionTrace)
+			System.out.println("Starting at initial state\n" + root);
 		
 		while (!frontier.isEmpty()) {
 			
 			Node leaf = frontier.remove();
 			
-			System.err.println("Expanding this leaf:\n" + leaf);
+			if (enableExpansionTrace)
+				System.out.println("Expanding this leaf:,\n" +
+						"with g(n) = " + leaf.getDepth() + 
+						" and h(n) = " + leaf.getHeuristicValue() + "\n" + leaf);
 			
 			if (leaf.isGoal()) {
 				
@@ -82,5 +87,6 @@ public class Problem {
 	private PuzzleState initialState;
 	private IHeuristic heuristic;
 	private boolean enableStackTrace;
+	private boolean enableExpansionTrace;
 	
 }
