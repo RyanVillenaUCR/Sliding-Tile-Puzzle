@@ -56,7 +56,10 @@ public class Node implements Comparable<Node> {
 			PuzzleState newP = new PuzzleState(this.data);
 			newP.slide(thisCmd);
 			
-			children.add(new Node(newP, this, (IHeuristic) this.heuristic.clone()));
+			IHeuristic newH = (IHeuristic) this.heuristic.clone();
+			newH.setPuzzleState(newP);
+			
+			children.add(new Node(newP, this, newH));
 
 		}
 		
@@ -115,7 +118,7 @@ public class Node implements Comparable<Node> {
 	
 	private PuzzleState data;
 	private Node parent;
-	private IHeuristic heuristic;
+	public IHeuristic heuristic; // TODO revert
 	private int depth;
 
 }
