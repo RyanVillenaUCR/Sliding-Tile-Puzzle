@@ -20,9 +20,13 @@ public class ManhattanDistHeuristic implements IHeuristic {
 	}
 	
 	@Override
-	public Object clone() throws CloneNotSupportedException {
+	public Object clone() /*throws CloneNotSupportedException*/ {
 		
-		return new ManhattanDistHeuristic(new PuzzleState(p), accountForEmptyTile);
+		System.out.println("In ManhattanDistance.clone(), p[2][1] is " + p.get(2, 1));
+		
+		PuzzleState duplicatePS = new PuzzleState(p);
+		
+		return new ManhattanDistHeuristic(duplicatePS, accountForEmptyTile);
 	}
 	
 	@Override

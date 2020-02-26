@@ -8,7 +8,7 @@ public class MisplacedTileHeuristic implements IHeuristic {
 	}
 	
 	@Override
-	public Object clone() throws CloneNotSupportedException {
+	public Object clone() /*throws CloneNotSupportedException*/ {
 		
 		return new MisplacedTileHeuristic(new PuzzleState(p), accountForEmptyTile);
 	}
