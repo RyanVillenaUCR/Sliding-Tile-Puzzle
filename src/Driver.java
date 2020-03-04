@@ -2,6 +2,19 @@ import java.util.Scanner;
 
 public class Driver {
 	
+	private static String getMinutes(long millis) {
+
+		long min = millis / (60 * 1000);
+		millis %= (60 * 1000);
+
+		long sec = millis / 1000;
+		millis %= 1000;
+
+		return Long.toString(min) + ":"
+			 + Long.toString(sec) + "."
+			 + (millis < 100 ? "0" : "") + Long.toString(millis);
+	}
+
 	private static IHeuristic chooseHeuristic(PuzzleState pz) {
 		
 		System.out.println("Enter your choice of algorithm:\n"
@@ -85,8 +98,15 @@ public class Driver {
 		IHeuristic heuristic = chooseHeuristic(startingState);
 
 		Problem p = new Problem(startingState, heuristic);
+
+		long start = System.currentTimeMillis();
 		
 		System.out.println(p.solve() ? "" : "No solution found.");
+
+		long end = System.currentTimeMillis();
+		System.out.println("Time elapsed: " + getMinutes(end - start) + " "
+			             + "or " + Long.toString(end - start) + "ms");
+
 	}
 	
 	public static void main(String[] args) {
