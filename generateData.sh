@@ -18,6 +18,6 @@
 (echo "5 2" | java -ea -cp temp/ Driver > results/ohboy_mis.txt)&
 (echo "5 3" | java -ea -cp temp/ Driver > results/ohboy_man.txt)&
 
-(echo "6 1 1 2 3 4 5 6 8 7 0 3" | java -ea -cp temp/ Driver > results/impos_uni.txt)&
-(echo "6 2 1 2 3 4 5 6 8 7 0 3" | java -ea -cp temp/ Driver > results/impos_mis.txt)&
+(echo "6 3 1 2 3 4 5 6 8 7 0 3" | java -ea -cp temp/ Driver > results/impos_uni.txt)&
+(echo "6 3 1 2 3 4 5 6 8 7 0 3" | java -ea -cp temp/ Driver > results/impos_mis.txt)&
 (echo "6 3 1 2 3 4 5 6 8 7 0 3" | java -ea -cp temp/ Driver > results/impos_man.txt)&
