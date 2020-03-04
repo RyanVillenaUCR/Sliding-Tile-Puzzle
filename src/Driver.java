@@ -12,7 +12,9 @@ public class Driver {
 
 		return Long.toString(min) + ":"
 			 + Long.toString(sec) + "."
-			 + (millis < 100 ? "0" : "") + Long.toString(millis);
+			 + (millis < 100 ? "0" : "") 
+			 + (millis < 10  ? "0" : "")
+			 + Long.toString(millis);
 	}
 
 	private static IHeuristic chooseHeuristic(PuzzleState pz) {
