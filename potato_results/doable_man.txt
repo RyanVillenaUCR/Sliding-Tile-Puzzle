@@ -1,0 +1,132 @@
+Welcome to RyanVillenaUCR's 8-puzzle solver.
+Type "1" to use "Trivial",
+"2" to use "Very Easy",
+"3" to use "Easy",
+"4" to use "Doable",
+"5" to use "Oh Boy",
+or "6" to enter your own puzzle.
+Enter your choice of algorithm:
+1: Uniform Cost Search
+2: A* with the Misplaced Tile heuristic
+3: A* with the Manhattan distance heuristic
+
+Starting at initial state
+-------------
+Root node
+Depth: 0
+Heuristic: ManhattanDistHeuristic
+[0, 1, 2]
+[4, 5, 3]
+[7, 8, 6]
+-------------
+
+Expanding this leaf,
+with g(n) = 1 and h(n) = 4
+-------------
+Not a root node
+Depth: 1
+Heuristic: ManhattanDistHeuristic
+[4, 1, 2]
+[0, 5, 3]
+[7, 8, 6]
+-------------
+
+Expanding this leaf,
+with g(n) = 1 and h(n) = 4
+-------------
+Not a root node
+Depth: 1
+Heuristic: ManhattanDistHeuristic
+[1, 0, 2]
+[4, 5, 3]
+[7, 8, 6]
+-------------
+
+Expanding this leaf,
+with g(n) = 2 and h(n) = 3
+-------------
+Not a root node
+Depth: 2
+Heuristic: ManhattanDistHeuristic
+[1, 2, 0]
+[4, 5, 3]
+[7, 8, 6]
+-------------
+
+Expanding this leaf,
+with g(n) = 2 and h(n) = 3
+-------------
+Not a root node
+Depth: 2
+Heuristic: ManhattanDistHeuristic
+[1, 5, 2]
+[4, 0, 3]
+[7, 8, 6]
+-------------
+
+Expanding this leaf,
+with g(n) = 3 and h(n) = 2
+-------------
+Not a root node
+Depth: 3
+Heuristic: ManhattanDistHeuristic
+[1, 2, 3]
+[4, 5, 0]
+[7, 8, 6]
+-------------
+
+STACK TRACE BEGIN
+==============
+
+-------------
+Root node
+Depth: 0
+Heuristic: ManhattanDistHeuristic
+[0, 1, 2]
+[4, 5, 3]
+[7, 8, 6]
+-------------
+
+-------------
+Not a root node
+Depth: 1
+Heuristic: ManhattanDistHeuristic
+[1, 0, 2]
+[4, 5, 3]
+[7, 8, 6]
+-------------
+
+-------------
+Not a root node
+Depth: 2
+Heuristic: ManhattanDistHeuristic
+[1, 2, 0]
+[4, 5, 3]
+[7, 8, 6]
+-------------
+
+-------------
+Not a root node
+Depth: 3
+Heuristic: ManhattanDistHeuristic
+[1, 2, 3]
+[4, 5, 0]
+[7, 8, 6]
+-------------
+
+-------------
+Not a root node
+Depth: 4
+Heuristic: ManhattanDistHeuristic
+[1, 2, 3]
+[4, 5, 6]
+[7, 8, 0]
+-------------
+
+STACK TRACE END
+================
+
+This algorithm expanded a total of 5 times.
+The maximum number of nodes in the queue at any one time was 7.
+
+Time elapsed: 0:6.990 or 6990ms

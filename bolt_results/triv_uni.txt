@@ -1,0 +1,31 @@
+Welcome to RyanVillenaUCR's 8-puzzle solver.
+Type "1" to use "Trivial",
+"2" to use "Very Easy",
+"3" to use "Easy",
+"4" to use "Doable",
+"5" to use "Oh Boy",
+or "6" to enter your own puzzle.
+Enter your choice of algorithm:
+1: Uniform Cost Search
+2: A* with the Misplaced Tile heuristic
+3: A* with the Manhattan distance heuristic
+
+STACK TRACE BEGIN
+==============
+
+-------------
+Root node
+Depth: 0
+Heuristic: UniCostHeuristic
+[1, 2, 3]
+[4, 5, 6]
+[7, 8, 0]
+-------------
+
+STACK TRACE END
+================
+
+This algorithm expanded a total of 0 times.
+The maximum number of nodes in the queue at any one time was 0.
+
+Time elapsed: 0:0.01 or 1ms
